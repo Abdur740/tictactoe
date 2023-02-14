@@ -3,7 +3,7 @@ package tictactoe;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-class gamesetup{
+class Gamesetup{
     private static final Logger log = Logger.getLogger("InfoLogging");
     Scanner sc = new Scanner(System.in);
     char [][] arr = new char[3][3];
@@ -15,7 +15,7 @@ class gamesetup{
     String row2="";
     String row3="";
   
-    gamesetup(){
+    Gamesetup(){
         char value = 49;
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
@@ -162,7 +162,7 @@ class Tictactoe{
     private static final Logger log = Logger.getLogger("InfoLogging");
     public static void main(String[] args) {
         int playertime = 0;
-        gamesetup gs = new gamesetup();
+        Gamesetup gs = new Gamesetup();
         do{
             gs.playgame();
             gs.displayRes();
