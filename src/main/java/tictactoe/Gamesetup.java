@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 class Gamesetup{
     private static final Logger log = Logger.getLogger("InfoLogging");
+    StringBuilder sb =  new StringBuilder("\n");
     Scanner sc = new Scanner(System.in);
     char [][] arr = new char[3][3];
     String dia1="";
@@ -19,10 +20,10 @@ class Gamesetup{
             for(int j = 0; j < 3; j++) {
                 arr[i][j] = value;
                 value++;
-                log.info(arr[i][j]+" | ");
+                sb.append(arr[i][j]+" | ");
             }
-            log.info("\n");
-        }
+            sb.append("\n");
+        }log.info(""+sb);
     }
     void playgame(){
         log.info("Enter 'x' or 'o' in the rows and columns to play.\n");
@@ -144,11 +145,12 @@ void verticalcheck()
         }
     }
     void displayRes(){
+        sb =  new StringBuilder("\n");
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
-                log.info(arr[i][j]+" ");
+                sb.append(arr[i][j]+" | ");
             }
-            log.info("\n");
-        }
+            sb.append("\n");
+        }log.info(""+sb);
     }
 }
