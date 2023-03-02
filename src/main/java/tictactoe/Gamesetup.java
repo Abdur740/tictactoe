@@ -4,153 +4,242 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 class Gamesetup{
-    private static final Logger log = Logger.getLogger("InfoLogging");
-    StringBuilder sb =  new StringBuilder("\n");
-    Scanner sc = new Scanner(System.in);
-    char [][] arr = new char[3][3];
-    String dia1="";
-    String dia2="";
-    String row1="";
-    String row2="";
-    String row3="";
+    Logger log=Logger.getLogger("com-api-jar");
+    Scanner input=new Scanner(System.in);
+    StringBuilder gb= new StringBuilder("\n");
+    StringBuilder dg= new StringBuilder("\n");
+    char [][] t=new char[3][3];
+    int time=0;
+    int bool=0;
+    int bool1=0;
+    int bool2=0;
+    int set=1;
+    char blocknumber;
+    char player;
+    StringBuilder row0=new StringBuilder("");
+    StringBuilder row1=new StringBuilder("");
+    StringBuilder row2=new StringBuilder("");
+     StringBuilder col0=new StringBuilder("");
+    StringBuilder col1=new StringBuilder("");
+    StringBuilder col2=new StringBuilder("");
+ 
   
-    Gamesetup(){
-        char value = 49;
-        for(int i = 0; i < 3; i++) {
-            for(int j = 0; j < 3; j++) {
-                arr[i][j] = value;
-                value++;
-                sb.append(arr[i][j]+" | ");
-            }
-            sb.append("\n");
-        }log.info(""+sb);
-    }
-    void playgame(){
-        log.info("Enter 'x' or 'o' in the rows and columns to play.\n");
-        log.info("Select the box number: ");
-        char boxvalue = sc.next().charAt(0);   
-        log.info("Enter 'x' or 'o': ");
-        char player = sc.next().charAt(0);   
+    StringBuilder dia1=new StringBuilder("");
+    StringBuilder dia2=new StringBuilder("");
+    String r0;
+    String r1;
+    String r2;
+    String d1;
+    String d2;
+    String c0;
+    String c1;
+    String c2;
+    String cc;
+    String plx="Player X Wins !";
+    String plo=" Player O Wins !";
 
-        for(int i = 0; i < 3; i++) {
-            for(int j = 0; j < 3; j++) {
-                if(boxvalue == arr[i][j]) {
-                arr[i][j] = player;       
+
+    Gamesetup() {
+        int k = 49;
+        for (int i = 0; i < 3; i++) {
+
+            for (int j = 0; j < 3; j++) {
+                t[i][j] = (char) k;
+                k = k + 1;
             }
         }
     }
-}
-void verticalcheck()
-{
-    String col1 = "";
-    String col2 = "";
-    String col3 = "";
-    for(int i=0;i < 3;i++){
-        for(int j=0;j<3;j++){
-            if(i==0){
-                col1 = col1+arr[j][i];
-            }
-            else if(i==1){
-                col2 = col2+arr[j][i];
-            }
-            else{
-                col3 = col3+arr[j][i];
-            }
-        }if(col1.equals("xxx")){
-            log.info("Player x wins!");
-        }else if(col1.equals("ooo")){
-            log.info("Player o wins!");
-        }
-        if(col2.equals("xxx")){
-            log.info("Player x wins!");
-        }else if(col2.equals("ooo")){
-            log.info("Player o wins!");
-        }
-        if(col3.equals("xxx")){
-            log.info("Player x wins!");
-        }else if(col3.equals("ooo")){
-            log.info("Player o wins!");
-        }
-        col1 = "";
-        col2 = "";
-        col3 = "";
-    }
-}
-    void horizontalcheck(){
-        for(int i=0;i < 3;i++){
-            for(int j=0;j < 3;j++){
-                if(i==0){
-                    row1 = row1+arr[i][j];
-                }
-                else if(i==1){
-                    row2 = row2+arr[i][j];
-                }
-                else{
-                    row3 = row3+arr[i][j];
-                }
-            }if(row1.equals("xxx")){
-                log.info("Player x wins!");
-            }else if(row1.equals("ooo")){
-                log.info("Player o wins!");
-            }
-            if(row2.equals("xxx")){
-                log.info("Player x wins!");
-            }else if(row2.equals("ooo")){
-                log.info("Player o wins!");
-            }
-            if(row3.equals("xxx")){
-                log.info("Player x wins!");
-            }else if(row3.equals("ooo")){
-                log.info("Player o wins!");
-            }
-            row1 = "";
-            row2 = "";
-            row3 = "";
-        }
-    }
-   
-    void diagonalcheck()
+    void gameBoard()
     {
-        int j=0;
-        dia1="";
-        dia2="";
-    
+        log.info("X or O");
+        log.info("Rules : select the Block Number and then Fill X or O ");
         for(int i=0;i<3;i++)
         {
-            for(j=0;j<3;j++)
+            for(int j=0;j<3;j++)
             {
-                if(i==j)
-                {
-                    dia1=dia1+arr[i][j];
-                  
+                gb.append(t[i][j]+" ");
+
+            }
+           gb.append("\n");
+
+        }
+        cc=gb.toString();
+        log.info(cc);
+    }
+
+    int checkCols()
+    {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (j == 0) {
+                    
+                    col0.append(t[i][j]);
+                } else if (j== 1) {
+                     col1.append(t[i][j]);
+                } else {
+                     col2.append(t[i][j]);
                 }
-                if(i+j==2)
-                {
-                    dia2=dia2+arr[i][j];
-                }
+
             }
-            if(dia1.equals("xxx"))
-            {
-             log.info("\nx wins!");
+            c0=col0.toString();
+            c1=col1.toString();
+            c2=col2.toString();
+
+            if (c0.equals("xxx")) {
+                bool2=1;
+
+            } else if (c0.equals("ooo")) {
+                bool2= 2;
             }
-            else if(dia1.equals("ooo")){
-                log.info("o wins!");
+            if (c1.equals("xxx")) {
+                bool2= 1;
+            }else if (c1.equals("ooo")) {
+                bool2= 2;
             }
-            if(dia2.equals("xxx"))
-            {
-             log.info("\nx wins!");
-            }else if(dia2.equals("ooo")){       
-            log.info("\no wins!");
+            if (c2.equals("xxx")) {
+                bool2= 1;
+            } else if (c2.equals("ooo")) {
+                bool2= 2;
             }
         }
+        return bool2;
     }
-    void displayRes(){
-        sb =  new StringBuilder("\n");
-        for(int i = 0; i < 3; i++) {
-            for(int j = 0; j < 3; j++) {
-                sb.append(arr[i][j]+" | ");
+   int checkRows() {
+
+       for (int i = 0; i < 3; i++) {
+           for (int j = 0; j < 3; j++) {
+               if (i == 0) {
+                   row0.append(t[i][j]);
+
+               } else if (i == 1) {
+                   row1.append(t[i][j]);
+               } else {
+                   row2.append(t[i][j]);
+               }
+
+           }
+            r0=row0.toString();
+            r1=row0.toString();
+            r2=row0.toString();
+           if (r0.equals("xxx")) {
+               bool=1;
+
+           } else if (r0.equals("ooo")) {
+               bool= 2;
+           }
+           if (r1.equals("xxx")) {
+              bool= 1;
+           }else if (r1.equals("ooo")) {
+              bool= 2;
+           }
+           if (r2.equals("xxx")) {
+             bool= 1;
+           } else if (r2.equals("ooo")) {
+              bool= 2;
+           }
+
+
+       }
+       return bool;
+   }
+   int checkDiagonal()
+   {
+       for (int i=0;i<3;i++)
+       {
+           for (int j=0;j<3;j++)
+           {
+               if(i+j==2)
+               {
+                   dia2.append(t[i][j]);
+               }
+                if(i==j)
+               {
+                   dia1.append(t[i][j]);
+               }
+           }
+           d2=dia2.toString();
+           d1=dia1.toString();
+           if (d1.equals("xxx")) {
+               bool1=1;
+
+           } else if (d1.equals("ooo")) {
+               bool1= 2;
+           }
+           if (d2.equals("xxx")) {
+               bool1= 1;
+           }else if (d2.equals("ooo")) {
+               bool1= 2;
+           }
+       }
+
+       return bool1;
+   }
+   void displayGame()   {
+        dg.append("\n");
+       for (int i=0;i<3;i++) {
+           for (int j = 0; j < 3; j++) {
+               dg.append(t[i][j]+"  ");
+
+           }
+         dg.append("\n");
+       }
+       String dd=dg.toString();
+     log.info(dd);
+   }
+    void resultant(int k)
+    {
+        if(k==1)
+        {
+            log.info(plx);
+        }
+        else if(k==2)
+        {
+            log.info(plo);
+        }
+    }
+     
+    
+    void fillGameBoard()
+    {
+        do{
+
+            log.info("Enter Block Number");
+            blocknumber=input.next().charAt(0);
+            log.info("Enter X or O");
+            player=input.next().charAt(0);
+            for (int i=0;i<3;i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (t[i][j] == blocknumber) {
+                        t[i][j] = player;
+                    }
+                }
             }
-            sb.append("\n");
-        }log.info(""+sb);
+            displayGame();
+            int k=checkRows();
+            resultant(k);
+            int l=checkDiagonal();
+             resultant(l);
+            int m=checkCols();
+             resultant(m);
+          
+            if(bool==0 && bool1==0 && bool2==0)
+            {
+                set++;
+            }
+            if(set==10)
+            {
+                log.info("Tie");
+            }
+            time++;
+            row0.delete(0,r0.length());
+            row1.delete(0,r1.length());
+            row2.delete(0,r2.length());
+            dia1.delete(0,d1.length());
+            dia2.delete(0,d2.length());
+            col0.delete(0,c0.length());
+            col1.delete(0,c1.length());
+            col2.delete(0,c2.length());
+           
+        }while(time!=9);
     }
 }
